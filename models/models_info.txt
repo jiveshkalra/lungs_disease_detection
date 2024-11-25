@@ -1,0 +1,11 @@
+# lung_disease_predictor_cnn_mcff_without_data_augmentation.keras 
+-> 95% Training Acc. , 85% Testing Acc.
+
+# lung_disease_predictor_cnn_mcff_with_data_augmentation
+-> Training Accuracy:  90%
+-> Testing Accuracy:  55% 
+
+# lung_disease_predictor_cnn_logmel_without_data_augmentation
+-> Training Accuracy: 93%
+-> Testing Accuracy: 90% 
+
