@@ -93,8 +93,8 @@ iface = gr.Interface(
     fn=predict_lung_disease,
     inputs=["audio"],
     outputs="text",
-    title="Lung Disease Predictor",
-    description="This is a lung disease predictor that takes in an audio file and predicts the lung disease based on the audio file.",examples=
+    title="VitalSenseAI", 
+    examples=
         [  
            [os.path.join(audio_files_path,audio_file)] for audio_file in audio_files_to_show
         ]
