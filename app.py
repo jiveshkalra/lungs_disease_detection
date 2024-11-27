@@ -6,6 +6,8 @@ import torchaudio
 import librosa
 import numpy as np  
 import soundfile
+# Set the environment variable
+os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 
 audio_files_path = 'respiratory-sound-database/Respiratory_Sound_Database/Respiratory_Sound_Database/audio_and_txt_files'
 c_names = ['Bronchiectasis', 'COPD', 'Healthy', 'Pneumonia', 'URTI']
@@ -58,18 +60,22 @@ def predict_lung_disease(audio_data):
     
     filename = "temp/lungs_audio.wav"  # Set your desired filename 
     soundfile.write(filename, audio_data[1],samplerate=audio_data[0])  # Save audio to file
- 
+    
     # Process the temporary audio file
-    processed_audio = preprocessing(filename, 'log_mel').reshape((-1, 128, 157, 1))
-    new_preds = model.predict(processed_audio)
+    processed_audio = preprocessing(filename, 'log_mel').reshape((-1, 128, 157, 1)) 
+    new_preds = model.predict(processed_audio) 
     new_classpreds = np.argmax(new_preds, axis=1)
-    return c_names[new_classpreds[0]]
+    print(str(c_names[new_classpreds[0]]))
+    return str(c_names[new_classpreds[0]])
 
 # Gradio Interface
 model = load_model()
-# Title 
+# Add Title to Gradio  : Lung Disease Predictor
 
+iface = gr.Interface(fn=predict_lung_disease, inputs=["audio"], outputs="text", title="Lung Disease Predictor", description="This is a lung disease predictor that takes in an audio file and predicts the lung disease based on the audio file.")
 
-iface = gr.Interface(fn=predict_lung_disease, inputs=["audio"], outputs="text" )
+# have example audio files to test
+audio_files = random.sample(audio_files, 10) 
+
 
 iface.launch()
