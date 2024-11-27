@@ -23,10 +23,10 @@ audio_files_df = pd.DataFrame(audio_files, columns=['audio_paths'])
 # print(audio_files_df.iloc[0]['audio_file'])
 audio_files_to_show = [
    audio_files_df.iloc[2]['audio_paths'],
-   audio_files_df.iloc[0]['audio_paths'],
-   audio_files_df.iloc[0]['audio_paths'],
-   audio_files_df.iloc[0]['audio_paths'],
-   audio_files_df.iloc[0]['audio_paths']
+   audio_files_df.iloc[3]['audio_paths'],
+   audio_files_df.iloc[10]['audio_paths'],
+   audio_files_df.iloc[106]['audio_paths'],
+   audio_files_df.iloc[73]['audio_paths']
 ]
 
 # create a gradio interface
