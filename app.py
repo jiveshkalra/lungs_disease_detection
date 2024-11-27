@@ -1,11 +1,12 @@
+import librosa
 import tensorflow as tf
+import soundfile
+import gradio as gr 
+
+import pandas as pd
 import os
 import random
-import gradio as gr
-import torchaudio
-import librosa
 import numpy as np  
-import soundfile
 # Set the environment variable
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 
@@ -13,17 +14,27 @@ audio_files_path = 'respiratory-sound-database/Respiratory_Sound_Database/Respir
 c_names = ['Bronchiectasis', 'COPD', 'Healthy', 'Pneumonia', 'URTI']
 
 # Loading Audio Files
-audio_files = []
+audio_files = [] 
 for file in os.listdir(audio_files_path):
-    if file.endswith('.wav'):
-        audio_files.append(file) 
+    if file.endswith('.wav'): 
+        audio_files.append(file)  
+# convert the list to a df 
+audio_files_df = pd.DataFrame(audio_files, columns=['audio_paths'])
+# print(audio_files_df.iloc[0]['audio_file'])
+audio_files_to_show = [
+   audio_files_df.iloc[2]['audio_paths'],
+   audio_files_df.iloc[0]['audio_paths'],
+   audio_files_df.iloc[0]['audio_paths'],
+   audio_files_df.iloc[0]['audio_paths'],
+   audio_files_df.iloc[0]['audio_paths']
+]
 
 # create a gradio interface
 # 0. Load models 
 # 1. Audio File input
 # 2. clear and Submit button
 # 3. Upon submit , first preprocess the audio file using log mel and then run the outputs through the AI model 
-# 4. Output the prediction
+# # 4. Output the prediction
 
 def load_model():
     # Load the model  
@@ -69,13 +80,24 @@ def predict_lung_disease(audio_data):
     return str(c_names[new_classpreds[0]])
 
 # Gradio Interface
-model = load_model()
-# Add Title to Gradio  : Lung Disease Predictor
+model = load_model() 
 
-iface = gr.Interface(fn=predict_lung_disease, inputs=["audio"], outputs="text", title="Lung Disease Predictor", description="This is a lung disease predictor that takes in an audio file and predicts the lung disease based on the audio file.")
+# have example audio files to test 
 
-# have example audio files to test
-audio_files = random.sample(audio_files, 10) 
+ 
+
+# Interface
+iface = gr.Interface(
+    fn=predict_lung_disease,
+    inputs=["audio"],
+    outputs="text",
+    title="Lung Disease Predictor",
+    description="This is a lung disease predictor that takes in an audio file and predicts the lung disease based on the audio file.",examples=
+        [  
+           [os.path.join(audio_files_path,audio_file)] for audio_file in audio_files_to_show
+        ]
+    )
+
 
 
 iface.launch()
