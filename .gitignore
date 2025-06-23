@@ -1,3 +1,4 @@
 
 /respiratory-sound-database
 *.zip
+.DS_Store
