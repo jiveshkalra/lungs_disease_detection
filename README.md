@@ -102,3 +102,9 @@ This project has been a tremendous learning journey, including:
 - **Model Deployment:** Learned to deploy models using Gradio and HuggingFace Spaces, making AI accessible to non-technical users.
 - **Research & Problem Solving:** Tackled real-world challenges like data imbalance, hardware limitations, and the nuances of medical data.
 - **End-to-End AI Product Development:** From data preprocessing to model training, evaluation, and deployment.
+
+---
+
+<p align="center">
+  <b>Built With ❤️ by Jivesh Kalra</b>
+</p>
