@@ -1,4 +1,6 @@
-# VitalSenseAI: AI-Powered Lung Disease Detection from Respiratory Sounds
+# 🫁 VitalSenseAI: AI-Powered Lung Disease Detection from Respiratory Sounds
+
+![Public Banner Image](https://github.com/jiveshkalra/vital-sense-ai/blob/main/public/images/healthy-lungs.jpg)
 
 ## Project Overview
 
