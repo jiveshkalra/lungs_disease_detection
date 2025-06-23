@@ -83,9 +83,7 @@ def predict_lung_disease(audio_data):
 
 # Gradio Interface
 model = load_model() 
-
-# have example audio files to test 
-
+ 
  
 
 # Interface
